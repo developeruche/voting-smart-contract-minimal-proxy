@@ -201,11 +201,13 @@ contract Vote {
         uint winner_count;
 
         for (uint i = 0; i < candidate_list.length; i++) {
-            if(winner_count > candidate_list[i].vote_count) {
-                winner = candidate_list[i];
+            if(winner_count < candidate_list[i].vote_count) {
                 can__ = candidate_list[i];
+                winner_count = candidate_list[i].vote_count;
             }
         }
+        
+        winner = can__;
     }
 
     function initalize(uint _election_id, string memory _postion_title, address _manager, uint256 _election_duration) 
